@@ -1,95 +1,91 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+// import Image from "next/image";
+// import styles from "./page.module.css";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useState } from "react";
+// import FlexBetween from "./components/flexBetween"
+import NarBar from "./components/Navbar"
+import DashboardBox from "./components/DashboardBox";
+import RowOne from "./components/Rows/Row1";
+import RowTwo from "./components/Rows/Row2";
+import RowThree from "./components/Rows/Row3";
+
+const gridTemplateLargeScreens = `
+  "a b c"
+  "a b c"
+  "a b c"
+  "a b f"
+  "d e f"
+  "d e f"
+  "d h i"
+  "g h i"
+  "g h j"
+  "g h j"
+`;
+const gridTemplateSmallScreens = `
+  "a"
+  "a"
+  "a"
+  "a"
+  "b"
+  "b"
+  "b"
+  "b"
+  "c"
+  "c"
+  "c"
+  "d"
+  "d"
+  "d"
+  "e"
+  "e"
+  "f"
+  "f"
+  "f"
+  "g"
+  "g"
+  "g"
+  "h"
+  "h"
+  "h"
+  "h"
+  "i"
+  "i"
+  "j"
+  "j"
+`;
+
+
+
 
 export default function Home() {
+
+  const isAboveMediumScreen = useMediaQuery("(min-width: 1200px)")
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <>
+   <NarBar />
+   <Box width="100%" 
+   height="100%" 
+   display="grid" 
+   padding="0rem 0.8rem 0rem 0.8rem"
+   gap="1.5rem"
+   marginBottom="40rem"
+   sx={
+    isAboveMediumScreen ? {
+    gridTemplateColumns: "repeat(3, minmax(370px, 1fr))",
+    gridTemplateRows: "repeat(10, minmax(60px, 1fr))",
+    gridTemplateAreas:gridTemplateLargeScreens
+   } : {
+    gridAutoColumns: "1fr",
+    gridAutoRows: "80px",
+    gridTemplateAreas:gridTemplateSmallScreens
+   }
+  }
+   >
+   <RowOne />
+   <RowTwo />
+   <RowThree /> 
+   </Box>
+   </>
   );
 }
