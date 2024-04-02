@@ -19,6 +19,7 @@ import regression, { DataPoint } from "regression";
 import DashboardBox from "../DashboardBox";
 import FlexBetween from "../FlexBetween";
 import NavBar from "../Navbar";
+import { GetKpisResponse } from "@/app/state/types";
 
 const Predictions = () => {
   const { palette } = useTheme();
@@ -27,18 +28,19 @@ const Predictions = () => {
   const [formattedData, setFormattedData] = useState([])
 
   useEffect(() => {
+    // Assert the type of kpiData to GetKpisResponse[]
     if (!kpiData) return ;
-    // @ts-ignore
+
     const monthData = kpiData.data[0].monthlyData;
 
     const formatted: Array<DataPoint> = monthData.map(
-      // @ts-ignore
+  
       ({ revenue }, i: number) => {
         return [i, revenue];
       }
     );
     const regressionLine = regression.linear(formatted);
-   // @ts-ignore
+
     const formmattedMonthlyData = monthData.map(({ month, revenue }, i: number) => {
       return {
         name: month,

@@ -20,6 +20,8 @@ export interface Day {
   expenses: number;
 }
 
+interface KpiData {}
+
 export interface Data {
   expensesByCategory: ExpensesByCategory;
   monthlyData: Array<Month>;
@@ -28,11 +30,19 @@ export interface Data {
   updatedAt: string;
 }
 export interface GetKpisResponse {
-  id: string;
-  totalProfit: number;
-  totalRevenue: number;
-  totalExpenses: number;
-  data: Data[];
+  data: {
+    id: string;
+    totalProfit: number;
+    totalRevenue: number;
+    totalExpenses: number;
+    monthlyData: Month[];
+    dailyData: Day[];
+    expensesByCategory: ExpensesByCategory;
+    createdAt: string;
+    updatedAt: string;
+
+    // Add other properties if needed
+  }[];
 }
 
 export interface GetProductsResponse {
