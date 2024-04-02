@@ -24,14 +24,15 @@ const RowTwo = () => {
       
     useEffect(() => {
        if (productCost && operationalCost) {
-          const monthlyOperationCost = operationalCost.data[0].monthlyData.map(({ month, nonOperationalExpenses
-            , operationalExpenses
+        // @ts-ignore
+          const monthlyOperationCost = operationalCost.data[0].monthlyData.map(({ month, nonOperationalExpenses, operationalExpenses
         }) => ({
              name: month.substring(0, 3),
              "operationalCost": operationalExpenses,
              "nonOperationalExpenses": nonOperationalExpenses
           }))
         //   console.log(productCost)
+        // @ts-ignore
           const productCosts = productCost.data.map((data: any) => ({
             "expenses": data.expense,
             "price": data.price

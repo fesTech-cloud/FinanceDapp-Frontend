@@ -10,8 +10,10 @@ const RowOne = () => {
    const { palette } = useTheme()
    const [revenueExp, setRevenueExp] = useState([])
    const [profit, setProfit] = useState([])
+   console.log(data)
    useEffect(() => {
       if (data) {
+        // @ts-ignore
          const monthlyRevenueExpense = data.data[0].monthlyData.map(({ month, revenue, expenses }) => ({
             name: month.substring(0, 3),
             revenue: revenue,

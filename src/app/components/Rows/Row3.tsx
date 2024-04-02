@@ -62,7 +62,9 @@ const RowThree = () => {
 
       useEffect(() => {
         if(kpiData) {
+          // @ts-ignore
           const totalExpenses = kpiData.data[0].totalExpense
+          // @ts-ignore
           const total = kpiData.data[0].expensesByCategory
          const totalToArray =  total[0]
         Object.entries(totalToArray).map(([key, value]) => {
@@ -74,6 +76,7 @@ const RowThree = () => {
             },
             {
               name: `${key} of Total`,
+              // @ts-ignore
               value: totalExpenses - value as number,
             }],
           ]);
@@ -119,6 +122,7 @@ const RowThree = () => {
         <DashboardBox  gridArea="g">
         <BoxHeader 
           title="List of Products"
+          // @ts-ignore
           sideText={`${productData?.data.length} products`}/>
 
          <Box
@@ -145,6 +149,7 @@ const RowThree = () => {
             columnHeaderHeight={25}
             rowHeight={35}
             hideFooter={true}
+            // @ts-ignore
             rows={productData?.data || []}
             columns={productColumns}
           />
@@ -155,6 +160,7 @@ const RowThree = () => {
         <DashboardBox  gridArea="h">
         <BoxHeader 
           title="List of Transactions"
+          // @ts-ignore
           sideText={`${transData?.data.length} products`}/>
 
          <Box
@@ -181,6 +187,7 @@ const RowThree = () => {
             columnHeaderHeight={25}
             rowHeight={35}
             hideFooter={true}
+            // @ts-ignore
             rows={transData?.data || []}
             columns={transactionColumns}
           />

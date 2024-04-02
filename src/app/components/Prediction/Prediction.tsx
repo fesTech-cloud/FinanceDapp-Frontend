@@ -28,15 +28,17 @@ const Predictions = () => {
 
   useEffect(() => {
     if (!kpiData) return ;
+    // @ts-ignore
     const monthData = kpiData.data[0].monthlyData;
 
     const formatted: Array<DataPoint> = monthData.map(
+      // @ts-ignore
       ({ revenue }, i: number) => {
         return [i, revenue];
       }
     );
     const regressionLine = regression.linear(formatted);
-
+   // @ts-ignore
     const formmattedMonthlyData = monthData.map(({ month, revenue }, i: number) => {
       return {
         name: month,
