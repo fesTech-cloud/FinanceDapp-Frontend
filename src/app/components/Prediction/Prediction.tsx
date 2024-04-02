@@ -31,17 +31,19 @@ const Predictions = () => {
     // Assert the type of kpiData to GetKpisResponse[]
     if (!kpiData) return ;
 
-    const monthData = kpiData.data[0].monthlyData;
+    // const monthData = kpiData.data[0].monthlyData;
+    const data:any = kpiData
+    const monthlyData = data.data[0]
 
-    const formatted: Array<DataPoint> = monthData.map(
+    const formatted: Array<DataPoint> = monthlyData.monthlyData.map(
   
-      ({ revenue }, i: number) => {
+      ({ revenue }: {revenue:number}, i: number) => {
         return [i, revenue];
       }
     );
     const regressionLine = regression.linear(formatted);
 
-    const formmattedMonthlyData = monthData.map(({ month, revenue }, i: number) => {
+    const formmattedMonthlyData = monthlyData.monthlyData.map(({ month, revenue }:{ month:string, revenue:number}, i: number) => {
       return {
         name: month,
         "Actual Revenue": revenue,
